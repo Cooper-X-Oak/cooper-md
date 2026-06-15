@@ -57,6 +57,16 @@ pnpm web wrangler:dev    # Cloudflare Workers 开发
 pnpm web wrangler:deploy   # Cloudflare Workers 部署
 ```
 
+### 本地浏览器调试
+
+- 本仓库约定 Chrome CDP 调试端口固定使用 `9223`。
+- Web 开发服务默认访问地址为 `http://127.0.0.1:5173/md/`。
+- Windows PowerShell 启动示例：
+
+```powershell
+Start-Process "C:\Program Files\Google\Chrome\Application\chrome.exe" -ArgumentList @("--remote-debugging-address=127.0.0.1","--remote-debugging-port=9223","--user-data-dir=$PWD\.scratch\chrome-cdp-profile","http://127.0.0.1:5173/md/") -WindowStyle Hidden
+```
+
 ### VSCode 扩展
 
 ```bash
