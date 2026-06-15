@@ -60,6 +60,7 @@ pnpm web wrangler:deploy   # Cloudflare Workers 部署
 ### 本地浏览器调试
 
 - 本仓库约定 Chrome CDP 调试端口固定使用 `9223`。
+- 本地页面调试、样式检查、截图和交互验证默认通过 `http://127.0.0.1:9223` 走 Chrome CDP；不要优先改用内置浏览器插件。
 - Web 开发服务默认访问地址为 `http://127.0.0.1:5173/md/`。
 - Windows PowerShell 启动示例：
 
