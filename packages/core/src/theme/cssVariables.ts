@@ -107,10 +107,11 @@ export function generateTypographyStyles(config: CSSVariableConfig, scope = `#ou
 }
 
 #output p {
-  margin: 1.08em 8px;
-  color: #2d3338;
-  letter-spacing: 0.025em;
-  line-height: 1.92;
+  margin: 1.05em 8px;
+  color: #2f3437;
+  letter-spacing: 0.02em;
+  line-height: 1.94;
+  word-break: break-word;
 }
 
 #output blockquote {
@@ -198,21 +199,23 @@ export function generateTypographyStyles(config: CSSVariableConfig, scope = `#ou
 #output hr {
   height: 1px;
   border: none;
-  margin: 2.1em 8px;
-  background: #e5e7eb;
+  margin: 2.35em 8px 2.25em;
+  background: #dfe3e8;
 }
 
 #output strong {
-  color: #111827;
+  color: #171b20;
   font-weight: 700;
 }
 
 #output em {
-  color: #4b5563;
+  color: #555f68;
+  font-style: italic;
 }
 
 #output a {
   color: #576b95;
+  border-bottom: 1px solid #d8dfeb;
   text-decoration: none;
 }
 
