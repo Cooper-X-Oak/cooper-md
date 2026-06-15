@@ -10,6 +10,11 @@ export const themeOptionsMap = {
     value: `default`,
     desc: ``,
   },
+  cooper: {
+    label: `Cooper`,
+    value: `cooper`,
+    desc: `@Cooper-X-Oak`,
+  },
   grace: {
     label: `优雅`,
     value: `grace`,
@@ -27,6 +32,11 @@ export const themeOptions: IConfigOption<ThemeName>[] = [
     label: `经典`,
     value: `default`,
     desc: ``,
+  },
+  {
+    label: `Cooper`,
+    value: `cooper`,
+    desc: `@Cooper-X-Oak`,
   },
   {
     label: `优雅`,

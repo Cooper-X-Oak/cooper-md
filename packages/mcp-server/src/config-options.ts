@@ -23,6 +23,7 @@ export const colorOptions = [
 
 export const themeOptions = [
   { value: `default`, label: `经典`, desc: `` },
+  { value: `cooper`, label: `Cooper`, desc: `@Cooper-X-Oak` },
   { value: `grace`, label: `优雅`, desc: `@brzhang` },
   { value: `simple`, label: `简洁`, desc: `@okooo5km` },
 ] as const

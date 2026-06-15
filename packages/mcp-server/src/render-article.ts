@@ -54,6 +54,7 @@ function loadCSSFile(filename: string): string {
 const baseCSSContent = loadCSSFile(`base.css`)
 const themeMap: Record<string, string> = {
   default: loadCSSFile(`default.css`),
+  cooper: loadCSSFile(`cooper.css`),
   grace: loadCSSFile(`grace.css`),
   simple: loadCSSFile(`simple.css`),
 }
@@ -134,7 +135,10 @@ export async function buildRenderedOutput(input: RenderMarkdownInput) {
 
   const variablesCSS = generateCSSVariables(cssConfig)
   const headingStylesCSS = generateHeadingStyles(cssConfig)
-  const themeCSS = themeMap[theme] || themeMap.default
+  const selectedThemeCSS = themeMap[theme] || themeMap.default
+  const themeCSS = theme === `default`
+    ? themeMap.default
+    : `${themeMap.default}\n\n${selectedThemeCSS}`
   const hljsCSS = codeBlockTheme ? await fetchCodeBlockCSS(codeBlockTheme) : ``
   const customCSS = escapeStyleContent(input.customCSS?.trim() ?? ``)
 

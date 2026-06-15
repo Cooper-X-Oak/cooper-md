@@ -218,7 +218,7 @@ function cancelInlineRename() {
       <DropdownMenu
         v-if="!isSelectMode"
         :open="openMenuKey === post.id"
-        @update:open="(open) => onPostMenuOpenChange(post.id, open)"
+        @update:open="(open: boolean) => onPostMenuOpenChange(post.id, open)"
       >
         <DropdownMenuTrigger as-child>
           <button
