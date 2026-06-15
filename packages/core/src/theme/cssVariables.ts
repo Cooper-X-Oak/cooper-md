@@ -54,34 +54,34 @@ export function generateTypographyStyles(config: CSSVariableConfig, scope = `#ou
   const css = `
 #output h1 {
   display: block;
-  padding: 0.78em 0 0.72em;
-  border-top: 2px solid var(--md-primary-color);
+  padding: 0.86em 0 0.78em;
+  border-top: 4px solid var(--md-primary-color);
   border-left: none;
   border-bottom: 1px solid #d9dde2;
-  margin: 1.82em 8px 1.5em;
+  margin: 1.76em 8px 1.62em;
   color: var(--md-primary-color);
   background: transparent;
-  font-size: calc(var(--md-font-size) * 1.62);
+  font-size: calc(var(--md-font-size) * 1.68);
   font-weight: 800;
-  letter-spacing: 0.035em;
-  line-height: 1.32;
+  letter-spacing: 0.045em;
+  line-height: 1.28;
   text-align: left;
 }
 
 #output h2 {
   display: block;
-  padding: 0.68em 0 0;
-  border-top: 1px solid #d9dde2;
+  padding: 0.62em 0 0;
+  border-top: 2px solid var(--md-primary-color);
   border-left: none;
   border-bottom: none;
   border-radius: 0;
-  margin: 3.25em 8px 1.08em;
+  margin: 3.28em 8px 1.08em;
   color: var(--md-primary-color);
   background: transparent;
-  font-size: calc(var(--md-font-size) * 1.26);
+  font-size: calc(var(--md-font-size) * 1.22);
   font-weight: 800;
-  letter-spacing: 0.03em;
-  line-height: 1.42;
+  letter-spacing: 0.055em;
+  line-height: 1.45;
   text-align: left;
 }
 
@@ -130,22 +130,22 @@ export function generateTypographyStyles(config: CSSVariableConfig, scope = `#ou
 }
 
 #output blockquote {
-  padding: 0.68em 0 0.7em 0.92em;
+  padding: 0.82em 0 0.84em 1em;
   border-top: 1px solid #e2e5e9;
-  border-left: 2px solid var(--md-primary-color);
+  border-left: 4px solid var(--md-primary-color);
   border-bottom: 1px solid #e2e5e9;
   border-radius: 0;
-  margin: 1.78em 14px;
-  color: #4f5962;
+  margin: 1.9em 14px;
+  color: #47525c;
   background: transparent;
   font-style: normal;
 }
 
 #output blockquote > p {
   margin: 0;
-  color: #4f5962;
-  letter-spacing: 0.026em;
-  line-height: 1.86;
+  color: #47525c;
+  letter-spacing: 0.03em;
+  line-height: 1.84;
 }
 
 #output .markdown-alert {
@@ -248,9 +248,9 @@ export function generateTypographyStyles(config: CSSVariableConfig, scope = `#ou
 
 #output hr {
   height: 2px;
-  width: 3.6em;
+  width: 4.2em;
   border: none;
-  margin: 2.65em 8px 2.55em;
+  margin: 2.8em 8px 2.68em;
   background: var(--md-primary-color);
 }
 
