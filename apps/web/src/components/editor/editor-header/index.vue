@@ -34,7 +34,7 @@ const { editorRefresh } = useEditorRefresh()
 const { editor } = storeToRefs(editorStore)
 const { output } = storeToRefs(renderStore)
 const { primaryColor } = storeToRefs(themeStore)
-const { isOpenRightSlider, isShowSyncDialog, isShowAccountDialog, isShowShareDialog, isShowAboutDialog, isShowFundDialog, isShowEditorStateDialog, isShowMarkdownHelpDialog, copyMode } = storeToRefs(uiStore)
+const { isOpenRightSlider, isShowSyncDialog, isShowAccountDialog, isShowShareDialog, isShowAboutDialog, isShowFundDialog, isShowEditorStateDialog, isShowMarkdownHelpDialog, copyMode, isMobile, viewMode } = storeToRefs(uiStore)
 
 const isCopying = ref(false)
 
@@ -222,6 +222,14 @@ function copyToWeChat() {
   copyMode.value = 'txt'
   copy()
 }
+
+function toggleStylePanel() {
+  const shouldOpen = !isOpenRightSlider.value
+  isOpenRightSlider.value = shouldOpen
+
+  if (shouldOpen && !isMobile.value && viewMode.value === `edit`)
+    uiStore.setViewMode(`preview`)
+}
 </script>
 
 <template>
@@ -283,7 +291,7 @@ function copyToWeChat() {
         variant="outline"
         class="h-9"
         :class="{ 'bg-accent text-accent-foreground': isOpenRightSlider }"
-        @click="isOpenRightSlider = !isOpenRightSlider"
+        @click="toggleStylePanel"
       >
         <Palette class="mr-2 h-4 w-4" />
         <span>样式</span>
