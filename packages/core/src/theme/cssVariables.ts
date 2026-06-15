@@ -54,30 +54,34 @@ export function generateTypographyStyles(config: CSSVariableConfig, scope = `#ou
   const css = `
 #output h1 {
   display: block;
-  padding: 0.08em 0 0.12em 0.72em;
-  border-left: 4px solid var(--md-primary-color);
-  border-bottom: none;
-  margin: 2.42em 8px 1.36em;
+  padding: 0.78em 0 0.72em;
+  border-top: 2px solid var(--md-primary-color);
+  border-left: none;
+  border-bottom: 1px solid #d9dde2;
+  margin: 1.82em 8px 1.5em;
   color: var(--md-primary-color);
   background: transparent;
-  font-size: calc(var(--md-font-size) * 1.48);
+  font-size: calc(var(--md-font-size) * 1.62);
   font-weight: 800;
-  line-height: 1.38;
+  letter-spacing: 0.035em;
+  line-height: 1.32;
   text-align: left;
 }
 
 #output h2 {
   display: block;
-  padding: 0 0 0.48em 0.68em;
-  border-left: 3px solid var(--md-primary-color);
-  border-bottom: 1px solid #e3e7eb;
+  padding: 0.68em 0 0;
+  border-top: 1px solid #d9dde2;
+  border-left: none;
+  border-bottom: none;
   border-radius: 0;
-  margin: 2.78em 8px 1.12em;
+  margin: 3.25em 8px 1.08em;
   color: var(--md-primary-color);
   background: transparent;
-  font-size: calc(var(--md-font-size) * 1.22);
+  font-size: calc(var(--md-font-size) * 1.26);
   font-weight: 800;
-  line-height: 1.45;
+  letter-spacing: 0.03em;
+  line-height: 1.42;
   text-align: left;
 }
 
@@ -85,12 +89,13 @@ export function generateTypographyStyles(config: CSSVariableConfig, scope = `#ou
   padding: 0;
   border-left: none;
   border-bottom: none;
-  margin: 2.02em 8px 0.72em;
-  color: #1f2933;
+  margin: 2.08em 8px 0.66em;
+  color: #171b20;
   background: transparent;
-  font-size: calc(var(--md-font-size) * 1.13);
+  font-size: calc(var(--md-font-size) * 1.12);
   font-weight: 700;
-  line-height: 1.45;
+  letter-spacing: 0.015em;
+  line-height: 1.46;
   text-align: left;
 }
 
@@ -98,11 +103,12 @@ export function generateTypographyStyles(config: CSSVariableConfig, scope = `#ou
   padding: 0;
   border-left: none;
   border-bottom: none;
-  margin: 1.58em 8px 0.45em;
-  color: #4b5563;
+  margin: 1.55em 8px 0.42em;
+  color: #59616a;
   background: transparent;
-  font-size: calc(var(--md-font-size) * 1.02);
+  font-size: calc(var(--md-font-size) * 0.98);
   font-weight: 700;
+  letter-spacing: 0.04em;
   line-height: 1.5;
   text-align: left;
 }
@@ -116,38 +122,40 @@ export function generateTypographyStyles(config: CSSVariableConfig, scope = `#ou
 }
 
 #output p {
-  margin: 1.05em 8px;
-  color: #2f3437;
-  letter-spacing: 0.02em;
-  line-height: 1.94;
+  margin: 1em 8px;
+  color: #252b30;
+  letter-spacing: 0.018em;
+  line-height: 1.9;
   word-break: break-word;
 }
 
 #output blockquote {
-  padding: 0.9em 1em;
-  border-left: 3px solid var(--md-primary-color);
-  border-radius: 3px;
-  margin: 1.5em 8px;
-  color: #4b5563;
-  background: #f6f7f8;
+  padding: 0.68em 0 0.7em 0.92em;
+  border-top: 1px solid #e2e5e9;
+  border-left: 2px solid var(--md-primary-color);
+  border-bottom: 1px solid #e2e5e9;
+  border-radius: 0;
+  margin: 1.78em 14px;
+  color: #4f5962;
+  background: transparent;
   font-style: normal;
 }
 
 #output blockquote > p {
   margin: 0;
-  color: #4b5563;
-  letter-spacing: 0.02em;
-  line-height: 1.84;
+  color: #4f5962;
+  letter-spacing: 0.026em;
+  line-height: 1.86;
 }
 
 #output .markdown-alert {
-  padding: 0.9em 1em;
-  border: 1px solid #e1e5ea;
+  padding: 0.88em 0.95em;
+  border: 1px solid #e4e7eb;
   border-left: 3px solid var(--md-primary-color);
   border-radius: 3px;
-  margin: 1.55em 8px;
+  margin: 1.62em 8px;
   color: #4b5563;
-  background: #f7f8fa;
+  background: #f8f9fa;
 }
 
 #output .markdown-alert > p {
@@ -190,29 +198,29 @@ export function generateTypographyStyles(config: CSSVariableConfig, scope = `#ou
 }
 
 #output .codespan {
-  padding: 2px 5px;
-  border: 1px solid #dfe3e8;
-  border-radius: 3px;
-  color: #1f2933;
-  background: #f5f6f7;
-  font-size: 90%;
+  padding: 1px 4px;
+  border: 1px solid #e2e5e9;
+  border-radius: 2px;
+  color: #242a2f;
+  background: #f6f7f8;
+  font-size: 88%;
 }
 
 #output pre.code__pre,
 #output .hljs.code__pre {
   overflow-x: auto;
-  border: 1px solid #dfe3e8;
+  border: 1px solid #e2e5e9;
   border-radius: 4px;
-  margin: 1.45em 8px;
-  background: #f8fafc;
+  margin: 1.55em 8px;
+  background: #f9fafb;
 }
 
 #output pre.code__pre > code,
 #output .hljs.code__pre > code {
   padding: 0.75em 1em 1em;
-  color: #1f2933;
+  color: #242a2f;
   background: transparent;
-  line-height: 1.68;
+  line-height: 1.66;
 }
 
 #output img {
@@ -221,28 +229,29 @@ export function generateTypographyStyles(config: CSSVariableConfig, scope = `#ou
 }
 
 #output figure {
-  margin: 1.7em 8px;
+  margin: 1.85em 8px;
   color: #2f3437;
 }
 
 #output figure img {
-  margin: 0 auto 0.65em;
+  margin: 0 auto 0.58em;
 }
 
 #output figcaption,
 #output .md-figcaption {
-  color: #8a8f98;
-  font-size: 0.82em;
-  letter-spacing: 0.02em;
-  line-height: 1.62;
+  color: #8f959d;
+  font-size: 0.8em;
+  letter-spacing: 0.025em;
+  line-height: 1.58;
   text-align: center;
 }
 
 #output hr {
-  height: 1px;
+  height: 2px;
+  width: 3.6em;
   border: none;
-  margin: 2.35em 8px 2.25em;
-  background: #dfe3e8;
+  margin: 2.65em 8px 2.55em;
+  background: var(--md-primary-color);
 }
 
 #output strong {
@@ -264,8 +273,8 @@ export function generateTypographyStyles(config: CSSVariableConfig, scope = `#ou
 #output table {
   border-collapse: collapse;
   width: 100%;
-  margin: 1.45em 0;
-  color: #2f3437;
+  margin: 1.58em 0;
+  color: #252b30;
 }
 
 #output thead {
@@ -274,17 +283,17 @@ export function generateTypographyStyles(config: CSSVariableConfig, scope = `#ou
 }
 
 #output th {
-  padding: 0.58em 0.72em;
-  border: 1px solid #dfe3e8;
+  padding: 0.56em 0.7em;
+  border: 1px solid #e2e5e9;
   color: #111827;
-  background: #f6f7f8;
+  background: #f8f9fa;
   line-height: 1.55;
 }
 
 #output td {
-  padding: 0.58em 0.72em;
-  border: 1px solid #dfe3e8;
-  color: #2f3437;
+  padding: 0.56em 0.7em;
+  border: 1px solid #e2e5e9;
+  color: #252b30;
   line-height: 1.62;
 }
   `.trim()
