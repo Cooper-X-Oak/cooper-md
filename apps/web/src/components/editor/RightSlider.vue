@@ -15,6 +15,7 @@ import {
   headingStyleOptions,
   legendOptions,
   themeOptions,
+  typographyStyleOptions,
 } from '@md/shared/configs'
 import PickColors from 'vue-pick-colors'
 import { Label } from '@/components/ui/label'
@@ -35,12 +36,14 @@ const {
   fontSize,
   primaryColor,
   codeBlockTheme,
+  typographyStyle,
   legend,
   isMacCodeBlock,
   isShowLineNumber,
   isCiteStatus,
   isUseIndent,
   isUseJustify,
+  isHeadingStyleLocked,
 } = storeToRefs(themeStore)
 
 const { scheduleEditorRefresh, editorRefresh } = useEditorRefresh()
@@ -94,6 +97,12 @@ function sizeChanged(size: string) {
 function colorChanged(newColor: string) {
   themeStore.primaryColor = newColor
   // 使用新主题系统
+  themeStore.applyCurrentTheme()
+  scheduleEditorRefresh()
+}
+
+function typographyStyleChanged(newStyle: typeof typographyStyleOptions[number]['value']) {
+  themeStore.typographyStyle = newStyle
   themeStore.applyCurrentTheme()
   scheduleEditorRefresh()
 }
@@ -261,6 +270,20 @@ const formatOptions = ref<Format[]>([`rgb`, `hex`, `hsl`, `hsv`])
       </div>
       <div class="space-y-2">
         <h2 class="text-sm font-medium">
+          排版
+        </h2>
+        <div class="grid grid-cols-2 justify-items-center gap-2">
+          <Button
+            v-for="{ label, value } in typographyStyleOptions" :key="value" class="w-full" variant="outline" :class="{
+              'border-primary ring-1 ring-primary/20 border-2': typographyStyle === value,
+            }" @click="typographyStyleChanged(value)"
+          >
+            {{ label }}
+          </Button>
+        </div>
+      </div>
+      <div class="space-y-2">
+        <h2 class="text-sm font-medium">
           字号
         </h2>
         <div class="grid grid-cols-5 justify-items-center gap-2">
@@ -304,7 +327,7 @@ const formatOptions = ref<Format[]>([`rgb`, `hex`, `hsl`, `hsv`])
           />
         </div>
       </div>
-      <div class="space-y-2">
+      <div v-if="!isHeadingStyleLocked" class="space-y-2">
         <h2 class="text-sm font-medium">
           标题样式
         </h2>

@@ -1,6 +1,6 @@
 import type { HeadingLevel, HeadingStyles, HeadingStyleType, PerThemeSettings, PerThemeSettingsMap, ThemeName } from '@md/shared/configs'
 import { applyTheme } from '@md/core'
-import { defaultPerThemeSettings, defaultStyleConfig, widthOptions } from '@md/shared/configs'
+import { defaultPerThemeSettings, defaultStyleConfig, isTypographyStyleHeadingLocked, widthOptions } from '@md/shared/configs'
 import { useCssEditorStore } from '@/stores/cssEditor'
 import { parseStoredValue, safeGetItem, safeRemoveItem, safeSetItem } from '@/utils/localStorageSafe'
 import { addPrefix } from '@/utils/prefix'
@@ -27,8 +27,11 @@ function migrateLegacySettingsSync(currentTheme: ThemeName): PerThemeSettingsMap
     ? parseStoredValue(existingMapRaw, {} as PerThemeSettingsMap)
     : {}
 
-  const defaults = defaultPerThemeSettings()
-  const settings: PerThemeSettings = { ...existingMap[currentTheme] ?? defaults }
+  const defaults = defaultPerThemeSettings(currentTheme)
+  const settings: PerThemeSettings = {
+    ...defaults,
+    ...(existingMap[currentTheme] ?? {}),
+  }
 
   const legacyFont = safeGetItem(`fonts`)
   if (legacyFont)
@@ -79,8 +82,8 @@ function migrateLegacySettingsSync(currentTheme: ThemeName): PerThemeSettingsMap
  * 主题和样式配置 Store
  * 负责管理所有与主题、字体、颜色相关的配置
  *
- * 每个主题拥有独立的配置（primaryColor、fontFamily、fontSize、codeBlockTheme、
- * headingStyles、isShowLineNumber、isMacCodeBlock），切换主题时自动加载对应配置。
+ * 每个主题拥有独立的配置（primaryColor、fontFamily、fontSize、typographyStyle、
+ * codeBlockTheme、headingStyles、isShowLineNumber、isMacCodeBlock），切换主题时自动加载对应配置。
  */
 export const useThemeStore = defineStore(`theme`, () => {
   // --- Legacy migration: run BEFORE reactive so initial value is correct ---
@@ -98,7 +101,19 @@ export const useThemeStore = defineStore(`theme`, () => {
 
   // 获取当前主题的配置（不存在时返回默认值）
   const currentSettings = computed<PerThemeSettings>(() => {
-    return themeSettings.value[theme.value] ?? defaultPerThemeSettings()
+    const defaults = defaultPerThemeSettings(theme.value)
+    const stored = themeSettings.value[theme.value]
+    if (!stored)
+      return defaults
+
+    return {
+      ...defaults,
+      ...stored,
+      headingStyles: {
+        ...defaults.headingStyles,
+        ...stored.headingStyles,
+      },
+    }
   })
 
   // --- Per-theme computed properties ---
@@ -124,6 +139,13 @@ export const useThemeStore = defineStore(`theme`, () => {
     set: (v: string) => { setThemeField(`codeBlockTheme`, v) },
   })
 
+  const typographyStyle = computed<PerThemeSettings[`typographyStyle`]>({
+    get: () => currentSettings.value.typographyStyle,
+    set: (v: PerThemeSettings[`typographyStyle`]) => { setThemeField(`typographyStyle`, v) },
+  })
+
+  const isHeadingStyleLocked = computed(() => isTypographyStyleHeadingLocked(typographyStyle.value))
+
   const headingStyles = computed<HeadingStyles>({
     get: () => currentSettings.value.headingStyles,
     set: (v: HeadingStyles) => { setThemeField(`headingStyles`, v) },
@@ -142,7 +164,7 @@ export const useThemeStore = defineStore(`theme`, () => {
   /** 更新当前主题的某个字段 */
   function setThemeField<K extends keyof PerThemeSettings>(key: K, value: PerThemeSettings[K]) {
     const t = theme.value
-    const existing = themeSettings.value[t] ?? defaultPerThemeSettings()
+    const existing = themeSettings.value[t] ?? defaultPerThemeSettings(t)
     themeSettings.value = {
       ...themeSettings.value,
       [t]: { ...existing, [key]: value },
@@ -184,7 +206,7 @@ export const useThemeStore = defineStore(`theme`, () => {
   const resetStyle = () => {
     themeSettings.value = {
       ...themeSettings.value,
-      [theme.value]: defaultPerThemeSettings(),
+      [theme.value]: defaultPerThemeSettings(theme.value),
     }
     isCiteStatus.value = defaultStyleConfig.isCiteStatus
     isCountStatus.value = defaultStyleConfig.isCountStatus
@@ -195,6 +217,9 @@ export const useThemeStore = defineStore(`theme`, () => {
 
   // 设置标题样式
   const setHeadingStyle = (level: HeadingLevel, style: HeadingStyleType) => {
+    if (isHeadingStyleLocked.value)
+      return
+
     const existing = headingStyles.value
     headingStyles.value = {
       ...existing,
@@ -204,6 +229,9 @@ export const useThemeStore = defineStore(`theme`, () => {
 
   // 获取标题样式
   const getHeadingStyle = (level: HeadingLevel): HeadingStyleType => {
+    if (isHeadingStyleLocked.value)
+      return `default`
+
     return headingStyles.value[level] || `default`
   }
 
@@ -243,7 +271,8 @@ export const useThemeStore = defineStore(`theme`, () => {
           fontSize: fontSize.value,
           isUseIndent: isUseIndent.value,
           isUseJustify: isUseJustify.value,
-          headingStyles: headingStyles.value,
+          headingStyles: isHeadingStyleLocked.value ? undefined : headingStyles.value,
+          typographyStyle: typographyStyle.value,
         },
       })
     }
@@ -261,6 +290,7 @@ export const useThemeStore = defineStore(`theme`, () => {
     fontSizeNumber,
     primaryColor,
     codeBlockTheme,
+    typographyStyle,
     legend,
     isMacCodeBlock,
     isShowLineNumber,
@@ -270,6 +300,7 @@ export const useThemeStore = defineStore(`theme`, () => {
     isUseJustify,
     previewWidth,
     headingStyles,
+    isHeadingStyleLocked,
 
     // Actions
     toggleMacCodeBlock,

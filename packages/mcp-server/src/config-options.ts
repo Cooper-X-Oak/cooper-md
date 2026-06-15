@@ -75,6 +75,13 @@ export const headingStyleOptions = [
 
 export type HeadingStylesInput = Partial<Record<HeadingLevel, HeadingStyleType>>
 
+export const typographyStyleOptions = [
+  { label: `默认`, value: `default`, desc: `Follow the selected theme.` },
+  { label: `现代专栏`, value: `modern-column`, desc: `Modern Chinese column typography.` },
+] as const
+
+export type TypographyStyleValue = typeof typographyStyleOptions[number][`value`]
+
 const codeBlockUrlPrefix = `https://cdn-doocs.oss-cn-shenzhen.aliyuncs.com/npm/highlightjs/11.11.1/styles/`
 
 const codeBlockThemeList = [
@@ -122,4 +129,5 @@ export const defaultRenderOptions = {
   themeMode: `light` as const,
   isUseIndent: false,
   isUseJustify: false,
+  typographyStyle: typographyStyleOptions[0].value,
 }

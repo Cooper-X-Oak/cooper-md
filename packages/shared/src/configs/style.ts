@@ -228,6 +228,21 @@ export type HeadingStyles = {
 
 export const defaultHeadingStyles: HeadingStyles = {}
 
+export type TypographyStyle = 'default' | 'modern-column'
+
+export const typographyStyleOptions: IConfigOption<TypographyStyle>[] = [
+  { label: `默认`, value: `default`, desc: `跟随主题` },
+  { label: `现代专栏`, value: `modern-column`, desc: `适合中文长文` },
+]
+
+export function defaultTypographyStyleForTheme(themeName?: ThemeName): TypographyStyle {
+  return themeName === `cooper` ? `modern-column` : `default`
+}
+
+export function isTypographyStyleHeadingLocked(style?: TypographyStyle): boolean {
+  return style === `modern-column`
+}
+
 export const legendOptions: IConfigOption[] = [
   {
     label: `title 优先`,
@@ -273,6 +288,7 @@ export const defaultStyleConfig = {
   codeBlockTheme: codeBlockThemeOptions[23].value,
   legend: legendOptions[3].value,
   headingStyles: defaultHeadingStyles as HeadingStyles,
+  typographyStyle: typographyStyleOptions[0].value,
 }
 
 export interface PerThemeSettings {
@@ -281,17 +297,19 @@ export interface PerThemeSettings {
   fontSize: string
   codeBlockTheme: string
   headingStyles: HeadingStyles
+  typographyStyle: TypographyStyle
   isShowLineNumber: boolean
   isMacCodeBlock: boolean
 }
 
-export function defaultPerThemeSettings(): PerThemeSettings {
+export function defaultPerThemeSettings(themeName?: ThemeName): PerThemeSettings {
   return {
     primaryColor: defaultStyleConfig.primaryColor,
     fontFamily: defaultStyleConfig.fontFamily,
     fontSize: defaultStyleConfig.fontSize,
     codeBlockTheme: defaultStyleConfig.codeBlockTheme,
     headingStyles: { ...defaultStyleConfig.headingStyles },
+    typographyStyle: defaultTypographyStyleForTheme(themeName),
     isShowLineNumber: defaultStyleConfig.isShowLineNumber,
     isMacCodeBlock: defaultStyleConfig.isMacCodeBlock,
   }

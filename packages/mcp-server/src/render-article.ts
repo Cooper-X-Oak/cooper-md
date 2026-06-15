@@ -1,11 +1,11 @@
 import type { ThemeName } from '@md/shared/configs'
 import type { HeadingStyles } from '@md/shared/configs/style'
-import type { HeadingStylesInput, LegendValue } from './config-options'
+import type { HeadingStylesInput, LegendValue, TypographyStyleValue } from './config-options'
 import fs from 'node:fs'
 import path from 'node:path'
 import { initRenderer } from '@md/core/renderer'
 import { processCSS } from '@md/core/theme/cssProcessor'
-import { generateCSSVariables, generateHeadingStyles } from '@md/core/theme/cssVariables'
+import { generateCSSVariables, generateHeadingStyles, generateTypographyStyles } from '@md/core/theme/cssVariables'
 import { postProcessHtml, renderMarkdown } from '@md/core/utils'
 import {
   assertAllowedCodeBlockThemeUrl,
@@ -28,6 +28,7 @@ export interface RenderMarkdownInput {
   themeMode?: 'light' | 'dark'
   isUseIndent?: boolean
   isUseJustify?: boolean
+  typographyStyle?: TypographyStyleValue
   headingStyles?: HeadingStylesInput
   codeBlockTheme?: string
   customCSS?: string
@@ -102,6 +103,14 @@ function normalizeHeadingStyles(input?: HeadingStylesInput): HeadingStyles | und
   return Object.keys(normalized).length > 0 ? normalized : undefined
 }
 
+function defaultTypographyStyleForTheme(theme: string): TypographyStyleValue {
+  return theme === `cooper` ? `modern-column` : defaultRenderOptions.typographyStyle
+}
+
+function isTypographyStyleHeadingLocked(style: TypographyStyleValue): boolean {
+  return style === `modern-column`
+}
+
 export async function buildRenderedOutput(input: RenderMarkdownInput) {
   const theme = input.theme ?? defaultRenderOptions.theme
   const primaryColor = input.primaryColor ?? defaultRenderOptions.primaryColor
@@ -109,7 +118,10 @@ export async function buildRenderedOutput(input: RenderMarkdownInput) {
   const fontSize = input.fontSize ?? defaultRenderOptions.fontSize
   const legend = input.legend ?? defaultRenderOptions.legend
   const codeBlockTheme = input.codeBlockTheme ?? defaultRenderOptions.codeBlockTheme
-  const headingStyles = normalizeHeadingStyles(input.headingStyles)
+  const typographyStyle = input.typographyStyle ?? defaultTypographyStyleForTheme(theme)
+  const headingStyles = isTypographyStyleHeadingLocked(typographyStyle)
+    ? undefined
+    : normalizeHeadingStyles(input.headingStyles)
 
   const renderer = initRenderer({
     isMacCodeBlock: input.isMacCodeBlock ?? defaultRenderOptions.isMacCodeBlock,
@@ -131,10 +143,12 @@ export async function buildRenderedOutput(input: RenderMarkdownInput) {
     isUseIndent: input.isUseIndent ?? defaultRenderOptions.isUseIndent,
     isUseJustify: input.isUseJustify ?? defaultRenderOptions.isUseJustify,
     headingStyles,
+    typographyStyle,
   }
 
   const variablesCSS = generateCSSVariables(cssConfig)
   const headingStylesCSS = generateHeadingStyles(cssConfig)
+  const typographyStylesCSS = generateTypographyStyles(cssConfig, ``)
   const selectedThemeCSS = themeMap[theme] || themeMap.default
   const themeCSS = theme === `default`
     ? themeMap.default
@@ -147,6 +161,7 @@ export async function buildRenderedOutput(input: RenderMarkdownInput) {
     baseCSSContent,
     themeCSS,
     headingStylesCSS,
+    typographyStylesCSS,
     hljsCSS,
     customCSS,
   ].filter(Boolean).join(`\n\n`)

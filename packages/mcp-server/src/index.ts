@@ -13,6 +13,7 @@ import {
   headingStyleOptions,
   legendOptions,
   themeOptions,
+  typographyStyleOptions,
 } from './config-options'
 
 import { buildRenderedOutput } from './render-article'
@@ -84,6 +85,10 @@ export const renderMarkdownInputSchema = {
     .optional()
     .default(false)
     .describe(`Whether to justify paragraph text (text-align: justify).`),
+  typographyStyle: z
+    .enum([`default`, `modern-column`])
+    .optional()
+    .describe(`Cross-theme typography preset. Use modern-column for modern Chinese column typography.`),
   headingStyles: z
     .object({
       h1: headingStyleEnum.optional(),
@@ -226,6 +231,20 @@ server.registerTool(
 )
 
 server.registerTool(
+  `list_typography_styles`,
+  {
+    description: `List cross-theme typography presets for render_markdown.`,
+  },
+  () => jsonText({
+    typographyStyles: typographyStyleOptions.map(t => ({
+      label: t.label,
+      value: t.value,
+      description: t.desc,
+    })),
+  }),
+)
+
+server.registerTool(
   `list_code_block_themes`,
   {
     description: `List highlight.js code block theme URLs for render_markdown.`,
@@ -348,6 +367,7 @@ server.registerTool(
       { name: `themeMode`, type: `'light' | 'dark'`, default: `light`, description: `Diagram colour mode.` },
       { name: `isUseIndent`, type: `boolean`, default: false, description: `Paragraph first-line indent.` },
       { name: `isUseJustify`, type: `boolean`, default: false, description: `Justified paragraph text.` },
+      { name: `typographyStyle`, type: `'default' | 'modern-column'`, default: `default`, description: `Cross-theme typography preset.` },
       { name: `headingStyles`, type: `object`, default: `{}`, description: `Per-level heading styles. See list_heading_styles.` },
       { name: `codeBlockTheme`, type: `preset url enum`, default: `github.min.css`, description: `highlight.js preset from list_code_block_themes.` },
       { name: `customCSS`, type: `string`, default: `''`, description: `User custom CSS appended last.` },

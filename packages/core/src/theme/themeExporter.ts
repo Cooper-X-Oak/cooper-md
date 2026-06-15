@@ -5,7 +5,7 @@
 
 import type { CSSVariableConfig } from './cssVariables'
 import { downloadFile } from '@md/shared/utils'
-import { generateCSSVariables } from './cssVariables'
+import { generateCSSVariables, generateTypographyStyles } from './cssVariables'
 
 /**
  * 导出合并后的主题CSS
@@ -22,6 +22,7 @@ export function exportMergedTheme(
 ) {
   // 1. 生成 CSS 变量
   const variablesCSS = generateCSSVariables(config)
+  const typographyStylesCSS = generateTypographyStyles(config, ``)
 
   // 2. 拼接完整 CSS
   const mergedCSS = [
@@ -34,6 +35,8 @@ export function exportMergedTheme(
     variablesCSS,
     ``,
     baseThemeCSS,
+    ``,
+    typographyStylesCSS,
     ``,
     customCSS,
   ].filter(Boolean).join(`\n`)
