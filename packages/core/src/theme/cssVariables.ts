@@ -54,48 +54,57 @@ export function generateTypographyStyles(config: CSSVariableConfig, scope = `#ou
   const css = `
 #output h1 {
   display: block;
-  padding: 0.12em 0 0.18em 0.85em;
-  border-left: 5px solid var(--md-primary-color);
+  padding: 0.08em 0 0.12em 0.72em;
+  border-left: 4px solid var(--md-primary-color);
   border-bottom: none;
-  margin: 2.55em 8px 1.5em;
+  margin: 2.42em 8px 1.36em;
   color: var(--md-primary-color);
-  font-size: calc(var(--md-font-size) * 1.5);
+  background: transparent;
+  font-size: calc(var(--md-font-size) * 1.48);
   font-weight: 800;
-  line-height: 1.35;
+  line-height: 1.38;
   text-align: left;
 }
 
 #output h2 {
   display: block;
-  padding: 0 0 0.55em 0.75em;
-  border-left: 4px solid var(--md-primary-color);
-  border-bottom: 1px solid #e5e7eb;
+  padding: 0 0 0.48em 0.68em;
+  border-left: 3px solid var(--md-primary-color);
+  border-bottom: 1px solid #e3e7eb;
   border-radius: 0;
-  margin: 2.9em 8px 1.25em;
+  margin: 2.78em 8px 1.12em;
   color: var(--md-primary-color);
   background: transparent;
-  font-size: calc(var(--md-font-size) * 1.24);
+  font-size: calc(var(--md-font-size) * 1.22);
   font-weight: 800;
   line-height: 1.45;
   text-align: left;
 }
 
 #output h3 {
-  padding: 0 0 0.38em;
+  padding: 0;
   border-left: none;
-  border-bottom: 1px dashed #d8dee6;
-  margin: 2.05em 8px 0.85em;
-  color: var(--md-primary-color);
-  font-size: calc(var(--md-font-size) * 1.12);
+  border-bottom: none;
+  margin: 2.02em 8px 0.72em;
+  color: #1f2933;
+  background: transparent;
+  font-size: calc(var(--md-font-size) * 1.13);
   font-weight: 700;
   line-height: 1.45;
+  text-align: left;
 }
 
 #output h4 {
-  margin: 1.75em 8px 0.6em;
-  color: #374151;
-  font-size: calc(var(--md-font-size) * 1.04);
+  padding: 0;
+  border-left: none;
+  border-bottom: none;
+  margin: 1.58em 8px 0.45em;
+  color: #4b5563;
+  background: transparent;
+  font-size: calc(var(--md-font-size) * 1.02);
   font-weight: 700;
+  line-height: 1.5;
+  text-align: left;
 }
 
 #output h5,
