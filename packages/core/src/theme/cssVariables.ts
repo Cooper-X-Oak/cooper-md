@@ -124,26 +124,50 @@ export function generateTypographyStyles(config: CSSVariableConfig, scope = `#ou
 }
 
 #output blockquote {
-  padding: 1em;
+  padding: 0.9em 1em;
   border-left: 3px solid var(--md-primary-color);
-  border-radius: 4px;
-  margin: 1.45em 8px;
+  border-radius: 3px;
+  margin: 1.5em 8px;
   color: #4b5563;
-  background: #f7f8fa;
+  background: #f6f7f8;
   font-style: normal;
 }
 
 #output blockquote > p {
   margin: 0;
   color: #4b5563;
-  letter-spacing: 0.025em;
-  line-height: 1.86;
+  letter-spacing: 0.02em;
+  line-height: 1.84;
 }
 
 #output .markdown-alert {
-  padding: 1em;
-  border-radius: 4px;
+  padding: 0.9em 1em;
+  border: 1px solid #e1e5ea;
+  border-left: 3px solid var(--md-primary-color);
+  border-radius: 3px;
+  margin: 1.55em 8px;
+  color: #4b5563;
   background: #f7f8fa;
+}
+
+#output .markdown-alert > p {
+  margin: 0.45em 0 0;
+  color: #4b5563;
+  letter-spacing: 0.02em;
+  line-height: 1.82;
+}
+
+#output .markdown-alert > .markdown-alert-title {
+  display: block;
+  margin: 0 0 0.45em;
+  color: var(--md-primary-color);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+}
+
+#output .markdown-alert-title svg {
+  vertical-align: -0.15em;
 }
 
 #output ol,
@@ -167,34 +191,42 @@ export function generateTypographyStyles(config: CSSVariableConfig, scope = `#ou
 
 #output .codespan {
   padding: 2px 5px;
-  border: 1px solid #e5e7eb;
-  border-radius: 4px;
-  color: var(--md-primary-color);
-  background: #f5f7fa;
+  border: 1px solid #dfe3e8;
+  border-radius: 3px;
+  color: #1f2933;
+  background: #f5f6f7;
   font-size: 90%;
 }
 
 #output pre.code__pre,
 #output .hljs.code__pre {
-  border: 1px solid #e5e7eb;
-  border-radius: 6px;
-  margin: 1.35em 8px;
-  background: #f7f9fb;
+  overflow-x: auto;
+  border: 1px solid #dfe3e8;
+  border-radius: 4px;
+  margin: 1.45em 8px;
+  background: #f8fafc;
 }
 
 #output pre.code__pre > code,
 #output .hljs.code__pre > code {
   padding: 0.75em 1em 1em;
-  line-height: 1.65;
+  color: #1f2933;
+  background: transparent;
+  line-height: 1.68;
 }
 
 #output img {
-  border-radius: 6px;
-  margin: 0.5em auto 0.7em;
+  border-radius: 4px;
+  margin: 0.5em auto 0.68em;
 }
 
 #output figure {
-  margin: 1.6em 8px;
+  margin: 1.7em 8px;
+  color: #2f3437;
+}
+
+#output figure img {
+  margin: 0 auto 0.65em;
 }
 
 #output figcaption,
@@ -202,7 +234,8 @@ export function generateTypographyStyles(config: CSSVariableConfig, scope = `#ou
   color: #8a8f98;
   font-size: 0.82em;
   letter-spacing: 0.02em;
-  line-height: 1.6;
+  line-height: 1.62;
+  text-align: center;
 }
 
 #output hr {
@@ -231,8 +264,8 @@ export function generateTypographyStyles(config: CSSVariableConfig, scope = `#ou
 #output table {
   border-collapse: collapse;
   width: 100%;
-  margin: 1.35em 0;
-  color: #2d3338;
+  margin: 1.45em 0;
+  color: #2f3437;
 }
 
 #output thead {
@@ -241,16 +274,18 @@ export function generateTypographyStyles(config: CSSVariableConfig, scope = `#ou
 }
 
 #output th {
-  padding: 0.6em 0.75em;
-  border: 1px solid #e5e7eb;
+  padding: 0.58em 0.72em;
+  border: 1px solid #dfe3e8;
   color: #111827;
-  background: #f7f8fa;
+  background: #f6f7f8;
+  line-height: 1.55;
 }
 
 #output td {
-  padding: 0.6em 0.75em;
-  border: 1px solid #e5e7eb;
-  color: #2d3338;
+  padding: 0.58em 0.72em;
+  border: 1px solid #dfe3e8;
+  color: #2f3437;
+  line-height: 1.62;
 }
   `.trim()
 
