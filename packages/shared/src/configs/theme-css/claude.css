@@ -1,0 +1,309 @@
+/**
+ * MD Claude theme
+ * Warm editorial typography inspired by Claude's public brand language.
+ */
+
+section.container,
+#output {
+  color: #2b2118;
+  background: #fbf7f0;
+  font-family: var(--md-font-family);
+}
+
+/* ==================== Headings ==================== */
+h1 {
+  display: block;
+  padding: 0 0 0.72em;
+  border: none;
+  border-bottom: 1px solid #d8cec1;
+  margin: 1.75em 8px 1.28em;
+  color: #241b14;
+  background: transparent;
+  font-family: Optima-Regular, Optima, Georgia, 'Times New Roman', 'PingFang SC', serif;
+  font-size: calc(var(--md-font-size) * 1.72);
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1.22;
+  text-align: left;
+}
+
+h2 {
+  display: block;
+  padding: 0.68em 0 0;
+  border: none;
+  border-top: 2px solid var(--md-primary-color);
+  border-radius: 0;
+  margin: 3.05em 8px 1.05em;
+  color: #2b2118;
+  background: transparent;
+  font-family: Optima-Regular, Optima, Georgia, 'Times New Roman', 'PingFang SC', serif;
+  font-size: calc(var(--md-font-size) * 1.32);
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1.36;
+  text-align: left;
+}
+
+h3 {
+  padding: 0 0 0 0.72em;
+  border: none;
+  border-left: 2px solid #d8cec1;
+  margin: 2.15em 8px 0.76em;
+  color: #33271d;
+  background: transparent;
+  font-size: calc(var(--md-font-size) * 1.12);
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.5;
+  text-align: left;
+}
+
+h4 {
+  padding: 0;
+  border: none;
+  margin: 1.6em 8px 0.45em;
+  color: #6f6257;
+  background: transparent;
+  font-size: calc(var(--md-font-size) * 0.98);
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.5;
+  text-align: left;
+}
+
+h5,
+h6 {
+  margin: 1.45em 8px 0.45em;
+  color: #6f6257;
+  background: transparent;
+  font-size: var(--md-font-size);
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+/* ==================== Body ==================== */
+p {
+  margin: 1.08em 8px;
+  color: #3a332c;
+  letter-spacing: 0;
+  line-height: 1.92;
+  word-break: break-word;
+}
+
+strong {
+  border-bottom: 2px solid #ead7c9;
+  color: #241b14;
+  font-weight: 700;
+  font-size: inherit;
+}
+
+em {
+  color: #6f6257;
+  font-style: italic;
+  font-size: inherit;
+}
+
+a {
+  border-bottom: 1px solid #d8cec1;
+  color: #7a4f38;
+  text-decoration: none;
+}
+
+/* ==================== Blockquote ==================== */
+blockquote {
+  padding: 0.86em 0.95em 0.88em 1.05em;
+  border: none;
+  border-left: 2px solid #2b2118;
+  border-radius: 0;
+  margin: 1.75em 14px;
+  color: #51463c;
+  background: #f3eadf;
+  font-style: normal;
+  box-shadow: none;
+}
+
+blockquote > p {
+  margin: 0;
+  color: #51463c;
+  letter-spacing: 0;
+  line-height: 1.86;
+}
+
+/* ==================== Alerts ==================== */
+.markdown-alert {
+  padding: 0.88em 0.95em;
+  border: 1px solid #e0d4c7;
+  border-left: 3px solid var(--md-primary-color);
+  border-radius: 4px;
+  margin: 1.62em 8px;
+  color: #4d4238;
+  background: #fffaf3;
+  font-style: normal;
+}
+
+.markdown-alert > p {
+  margin: 0.45em 0 0;
+  color: #4d4238;
+  letter-spacing: 0;
+  line-height: 1.82;
+}
+
+.markdown-alert > .markdown-alert-title {
+  display: block;
+  margin: 0 0 0.42em;
+  color: var(--md-primary-color);
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.5;
+}
+
+.markdown-alert-title svg {
+  vertical-align: -0.15em;
+}
+
+/* ==================== Lists ==================== */
+ol,
+ul {
+  padding-left: 1.4em;
+  margin: 1.05em 8px;
+  color: #3a332c;
+}
+
+ul {
+  list-style: disc;
+}
+
+ol {
+  list-style: decimal;
+}
+
+li {
+  display: list-item;
+  margin: 0.42em 8px;
+  color: #3a332c;
+  letter-spacing: 0;
+  line-height: 1.88;
+}
+
+/* ==================== Inline marks ==================== */
+.codespan {
+  padding: 1px 4px;
+  border: 1px solid #e0d4c7;
+  border-radius: 3px;
+  color: #3b2b20;
+  background: #f1e8dc;
+  font-size: 88%;
+}
+
+.markup-highlight {
+  padding: 1px 4px;
+  border-radius: 2px;
+  color: #2b2118;
+  background: #ead7c9;
+}
+
+.markup-underline {
+  text-decoration: underline;
+  text-decoration-color: var(--md-primary-color);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.markup-wavyline {
+  text-decoration: underline wavy;
+  text-decoration-color: var(--md-primary-color);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+/* ==================== Code blocks ==================== */
+pre.code__pre,
+.hljs.code__pre {
+  overflow-x: auto;
+  border: 1px solid #e0d4c7;
+  border-radius: 5px;
+  margin: 1.55em 8px;
+  background: #f6efe5;
+  box-shadow: none;
+}
+
+pre.code__pre > code,
+.hljs.code__pre > code {
+  padding: 0.78em 1em 1em;
+  color: #30261d;
+  background: transparent;
+  line-height: 1.66;
+}
+
+/* ==================== Media ==================== */
+img {
+  display: block;
+  max-width: 100%;
+  border-radius: 4px;
+  margin: 0.45em auto 0.68em;
+  box-shadow: none;
+}
+
+figure {
+  margin: 1.85em 8px;
+  color: #3a332c;
+}
+
+figure img {
+  margin: 0 auto 0.58em;
+}
+
+figcaption,
+.md-figcaption {
+  color: #82766b;
+  font-size: 0.82em;
+  letter-spacing: 0;
+  line-height: 1.58;
+  text-align: center;
+}
+
+/* ==================== Divider ==================== */
+hr {
+  height: 2px;
+  width: 3.2em;
+  border: none;
+  margin: 2.75em 8px 2.55em;
+  background: var(--md-primary-color);
+  transform: none;
+}
+
+/* ==================== Tables ==================== */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.58em 0;
+  color: #3a332c;
+}
+
+thead {
+  color: #241b14;
+  font-weight: 700;
+}
+
+th {
+  padding: 0.58em 0.7em;
+  border: 1px solid #e0d4c7;
+  color: #241b14;
+  background: #f1e8dc;
+  line-height: 1.55;
+}
+
+td {
+  padding: 0.58em 0.7em;
+  border: 1px solid #e0d4c7;
+  color: #3a332c;
+  background: #fbf7f0;
+  line-height: 1.62;
+}
+
+p.footnotes {
+  margin: 0.58em 8px;
+  color: #82766b;
+  font-size: 0.82em;
+  line-height: 1.62;
+}

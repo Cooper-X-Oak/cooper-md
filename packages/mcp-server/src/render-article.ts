@@ -10,6 +10,7 @@ import { postProcessHtml, renderMarkdown } from '@md/core/utils'
 import {
   assertAllowedCodeBlockThemeUrl,
   defaultRenderOptions,
+  fontFamilyOptions,
 } from './config-options'
 
 const CODE_BLOCK_FETCH_TIMEOUT_MS = 10_000
@@ -55,6 +56,7 @@ function loadCSSFile(filename: string): string {
 const baseCSSContent = loadCSSFile(`base.css`)
 const themeMap: Record<string, string> = {
   default: loadCSSFile(`default.css`),
+  claude: loadCSSFile(`claude.css`),
   cooper: loadCSSFile(`cooper.css`),
   grace: loadCSSFile(`grace.css`),
   simple: loadCSSFile(`simple.css`),
@@ -107,14 +109,22 @@ function defaultTypographyStyleForTheme(theme: string): TypographyStyleValue {
   return theme === `cooper` ? `modern-column` : defaultRenderOptions.typographyStyle
 }
 
+function defaultPrimaryColorForTheme(theme: string): string {
+  return theme === `claude` ? `#C96442` : defaultRenderOptions.primaryColor
+}
+
+function defaultFontFamilyForTheme(theme: string): string {
+  return theme === `claude` ? fontFamilyOptions[1].value : defaultRenderOptions.fontFamily
+}
+
 function isTypographyStyleHeadingLocked(style: TypographyStyleValue): boolean {
   return style === `modern-column`
 }
 
 export async function buildRenderedOutput(input: RenderMarkdownInput) {
   const theme = input.theme ?? defaultRenderOptions.theme
-  const primaryColor = input.primaryColor ?? defaultRenderOptions.primaryColor
-  const fontFamily = input.fontFamily ?? defaultRenderOptions.fontFamily
+  const primaryColor = input.primaryColor ?? defaultPrimaryColorForTheme(theme)
+  const fontFamily = input.fontFamily ?? defaultFontFamilyForTheme(theme)
   const fontSize = input.fontSize ?? defaultRenderOptions.fontSize
   const legend = input.legend ?? defaultRenderOptions.legend
   const codeBlockTheme = input.codeBlockTheme ?? defaultRenderOptions.codeBlockTheme

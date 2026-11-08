@@ -4,6 +4,7 @@
  */
 
 import baseCSS from './base.css?raw'
+import claudeCSS from './claude.css?raw'
 import cooperCSS from './cooper.css?raw'
 import defaultCSS from './default.css?raw'
 import graceCSS from './grace.css?raw'
@@ -19,6 +20,7 @@ export const baseCSSContent = baseCSS
  */
 export const themeMap = {
   default: defaultCSS,
+  claude: claudeCSS,
   cooper: cooperCSS,
   grace: graceCSS,
   simple: simpleCSS,

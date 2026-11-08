@@ -65,6 +65,11 @@ export const colorOptions: IConfigOption[] = [
     desc: `热情活力`,
   },
   {
+    label: `暖陶棕`,
+    value: `#C96442`,
+    desc: `温暖书卷`,
+  },
+  {
     label: `柠檬黄`,
     value: `#FECE00`,
     desc: `明亮温暖`,
@@ -303,9 +308,11 @@ export interface PerThemeSettings {
 }
 
 export function defaultPerThemeSettings(themeName?: ThemeName): PerThemeSettings {
+  const isClaudeTheme = themeName === `claude`
+
   return {
-    primaryColor: defaultStyleConfig.primaryColor,
-    fontFamily: defaultStyleConfig.fontFamily,
+    primaryColor: isClaudeTheme ? `#C96442` : defaultStyleConfig.primaryColor,
+    fontFamily: isClaudeTheme ? fontFamilyOptions[1].value : defaultStyleConfig.fontFamily,
     fontSize: defaultStyleConfig.fontSize,
     codeBlockTheme: defaultStyleConfig.codeBlockTheme,
     headingStyles: { ...defaultStyleConfig.headingStyles },

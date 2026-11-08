@@ -11,6 +11,7 @@ export const colorOptions = [
   { value: `#0F4C81`, label: `经典蓝`, desc: `稳重冷静` },
   { value: `#009874`, label: `翡翠绿`, desc: `自然平衡` },
   { value: `#FA5151`, label: `活力橘`, desc: `热情活力` },
+  { value: `#C96442`, label: `暖陶棕`, desc: `温暖书卷` },
   { value: `#FECE00`, label: `柠檬黄`, desc: `明亮温暖` },
   { value: `#92617E`, label: `薰衣紫`, desc: `优雅神秘` },
   { value: `#55C9EA`, label: `天空蓝`, desc: `清爽自由` },
@@ -23,6 +24,7 @@ export const colorOptions = [
 
 export const themeOptions = [
   { value: `default`, label: `经典`, desc: `` },
+  { value: `claude`, label: `Claude`, desc: `Warm editorial` },
   { value: `cooper`, label: `Cooper`, desc: `@Cooper-X-Oak` },
   { value: `grace`, label: `优雅`, desc: `@brzhang` },
   { value: `simple`, label: `简洁`, desc: `@okooo5km` },

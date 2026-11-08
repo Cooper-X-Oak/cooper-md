@@ -10,6 +10,11 @@ export const themeOptionsMap = {
     value: `default`,
     desc: ``,
   },
+  claude: {
+    label: `Claude`,
+    value: `claude`,
+    desc: `Warm editorial`,
+  },
   cooper: {
     label: `Cooper`,
     value: `cooper`,
@@ -32,6 +37,11 @@ export const themeOptions: IConfigOption<ThemeName>[] = [
     label: `经典`,
     value: `default`,
     desc: ``,
+  },
+  {
+    label: `Claude`,
+    value: `claude`,
+    desc: `Warm editorial`,
   },
   {
     label: `Cooper`,
